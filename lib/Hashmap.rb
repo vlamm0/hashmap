@@ -1,0 +1,32 @@
+
+require_relative 'Node'
+require_relative 'LinkedList'
+
+class HashMap
+  attr_accessor :buckets
+
+  def initialize
+    self.buckets = Array.new(16, nil)
+  end
+
+  def hash(key)
+    hash_code = 0
+    prime_number = 31
+
+    key.each_char { |char| hash_code = prime_number * hash_code + char.ord}
+    hash_code % 16
+  end
+
+  #doesn't replace key with new value
+  def set(key, value)
+    index = hash(key)
+    buckets[index] = LinkedList.new() if buckets[index].nil?
+    buckets[index].append(key, value)
+  end
+
+  def get(key)
+    index = hash(key)
+    buckets[index].nil? ? nil : buckets[index].find(key)
+  end
+end
+
