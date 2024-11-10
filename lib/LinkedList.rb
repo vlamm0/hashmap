@@ -29,23 +29,12 @@ class LinkedList
     end
   end
 
-  def prepend(value)
-    new_node = Node.new(value)
-    new_node.next = head
-    @head = new_node
-  end
-
-  def size
-    crawl("nodes") { |curr| !curr.next.nil?}
-  end
-
-  def get_head
-    head
-  end
-
-  def get_tail
-    tail = crawl {|curr| !curr.next.nil?}
-    tail
+  def find(value)
+    curr = crawl("index") do |curr|
+      break if curr.nil?
+      curr.key != value
+    end
+    curr ? curr - 1 : nil
   end
 
   def at(index)
@@ -54,45 +43,60 @@ class LinkedList
     curr ? curr : "index #{index} out of range"
   end
 
-  def pop
-    #next to last node
-    at(size - 2).next = nil
-  end
+#   def prepend(value)
+#     new_node = Node.new(value)
+#     new_node.next = head
+#     @head = new_node
+#   end
 
-  def contains?(value)
-    curr = crawl do |curr| 
-      break if curr.nil? 
-      curr.value != value
-    end
-    curr ? true : false
-  end
+#   def size
+#     crawl("nodes") { |curr| !curr.next.nil?}
+#   end
 
-  def find(value)
-    curr = crawl("nodes") do |curr|
-      break if curr.nil?
-      curr.value != value
-    end
-    curr ? curr - 1 : nil
-  end
+#   def get_head
+#     head
+#   end
 
-  # displays value of every node
-  def to_s
-    crawl do |curr|
-      print "( #{curr.value} ) -> "
-      !curr.next.nil?
-    end
-    puts "nil"
-  end
+#   def get_tail
+#     tail = crawl {|curr| !curr.next.nil?}
+#     tail
+#   end
 
-  # points prev to new_node, new_node points to index
-  def insert_at(value, index)
-    new_node = Node.new(value)
-    new_node.next = at(index)
-    at(index-1).next = new_node
-  end
 
-  # points prev node to node after index
-  def remove_at(index)
-    at(index-1).next = at(index+1)
-  end
+
+#   def pop
+#     #next to last node
+#     at(size - 2).next = nil
+#   end
+
+#   def contains?(value)
+#     curr = crawl do |curr| 
+#       break if curr.nil? 
+#       curr.value != value
+#     end
+#     curr ? true : false
+#   end
+
+
+
+#   # displays value of every node
+#   def to_s
+#     crawl do |curr|
+#       print "( #{curr.value} ) -> "
+#       !curr.next.nil?
+#     end
+#     puts "nil"
+#   end
+
+#   # points prev to new_node, new_node points to index
+#   def insert_at(value, index)
+#     new_node = Node.new(value)
+#     new_node.next = at(index)
+#     at(index-1).next = new_node
+#   end
+
+#   # points prev node to node after index
+#   def remove_at(index)
+#     at(index-1).next = at(index+1)
+#   end
 end

@@ -17,16 +17,17 @@ class HashMap
     hash_code % 16
   end
 
-  #doesn't replace key with new value
   def set(key, value)
     index = hash(key)
     buckets[index] = LinkedList.new() if buckets[index].nil?
-    buckets[index].append(key, value)
+    bucket = buckets[index]
+    node = bucket.find(key)
+    node.nil? ? bucket.append(key, value) : bucket.at(node).value = value
   end
 
   def get(key)
-    index = hash(key)
-    buckets[index].nil? ? nil : buckets[index].find(key)
+    bucket = buckets[hash(key)]
+    bucket.nil? ? nil : bucket.at(bucket.find(key)).value
   end
 end
 
