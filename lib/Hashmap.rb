@@ -41,15 +41,14 @@ class HashMap
     bucket = buckets[hash(key)]
     return nil if bucket.nil? 
     index = bucket.find(key)
-    
     value = bucket.at(index).value
+    # removes appropriate node, empties bucket (remove linked list) if necessary
     buckets[hash(key)] = nil if bucket.remove_at(index).nil?
-    #this is wrong if there is more than one item in list, need to work at LL level
-    #index == 0 ? buckets[hash(key)] = nil : bucket.remove_at(index)
-    #remove key if exists
-    #return key or nil
-    
     value
+  end
+
+  def length
+    buckets.reduce(0) { |sum, bucket| sum + (bucket.nil? ? 0 : bucket.size)}
   end
 end
 

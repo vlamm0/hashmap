@@ -44,6 +44,11 @@ class LinkedList
 
   def remove_at(index)
     index == 0 ? @head = head.next : at(index-1).next = at(index+1)
+    head
+  end
+
+  def size
+    crawl("nodes") { |curr| !curr.next.nil?}
   end
 
 #   def prepend(value)
@@ -52,9 +57,7 @@ class LinkedList
 #     @head = new_node
 #   end
 
-#   def size
-#     crawl("nodes") { |curr| !curr.next.nil?}
-#   end
+
 
 #   def get_head
 #     head
