@@ -25,11 +25,7 @@ p test.has?('num')
 p test
 p test.remove('elephant')
 p test.remove('carrot')
-p test 
 
 p test.length
 puts "TOO MANY BUCKETS" if test.buckets.length > 16
-
-test.clear 
-p test.length
-p test
+p test.keys

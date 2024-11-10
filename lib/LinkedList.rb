@@ -51,6 +51,15 @@ class LinkedList
     crawl("nodes") { |curr| !curr.next.nil?}
   end
 
+  def keys
+    curr, list = head, []
+    while !curr.nil?
+      list.push(curr.key)
+      curr = curr.next
+    end
+    list
+  end
+
 #   def prepend(value)
 #     new_node = Node.new(value)
 #     new_node.next = head

@@ -56,5 +56,11 @@ class HashMap
       buckets[i] = nil
     end
   end
+
+  def keys
+    list = []
+    buckets.each {|bucket| list << bucket.keys unless bucket.nil?}
+    list.flatten
+  end
 end
 
