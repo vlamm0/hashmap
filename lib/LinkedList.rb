@@ -19,7 +19,6 @@ class LinkedList
     size ? nodes : curr
   end
   
-  # check
   def append(key, value)
     if head.nil?
       @head = Node.new(key, value)
@@ -29,10 +28,10 @@ class LinkedList
     end
   end
 
-  def find(value)
+  def find(key)
     curr = crawl("index") do |curr|
       break if curr.nil?
-      curr.key != value
+      curr.key != key
     end
     curr ? curr - 1 : nil
   end

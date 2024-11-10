@@ -29,5 +29,12 @@ class HashMap
     bucket = buckets[hash(key)]
     bucket.nil? ? nil : bucket.at(bucket.find(key)).value
   end
+
+  #checks bucket for nil then checks for key
+  def has?(key)
+    bucket = buckets[hash(key)]
+    return false if bucket.nil?
+    !bucket.find(key).nil?
+  end
 end
 
