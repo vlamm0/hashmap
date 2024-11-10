@@ -50,5 +50,11 @@ class HashMap
   def length
     buckets.reduce(0) { |sum, bucket| sum + (bucket.nil? ? 0 : bucket.size)}
   end
+
+  def clear
+    buckets.length.times do |i|
+      buckets[i] = nil
+    end
+  end
 end
 
