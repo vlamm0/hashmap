@@ -42,6 +42,10 @@ class LinkedList
     curr ? curr : "index #{index} out of range"
   end
 
+  def remove_at(index)
+    index == 0 ? @head = head.next : at(index-1).next = at(index+1)
+  end
+
 #   def prepend(value)
 #     new_node = Node.new(value)
 #     new_node.next = head
@@ -94,8 +98,6 @@ class LinkedList
 #     at(index-1).next = new_node
 #   end
 
-#   # points prev node to node after index
-#   def remove_at(index)
-#     at(index-1).next = at(index+1)
-#   end
+  # points prev node to node after index
+
 end

@@ -14,7 +14,16 @@ test.set('ice cream', 'white')
 test.set('jacket', 'blue')
 test.set('kite', 'pink')
 test.set('lion', 'golden')
+
+# adds multiple items to a bucket to test the logic
+# cannot be removed with method because it is being entered manually (not hashed)
+# to delete this line after testing to remove
 test.buckets[1].append("test", "test")
 p test.get('elephant')
 p test.has?('ice cream')
 p test.has?('num')
+p test
+p test.remove('elephant')
+p test.remove('carrot')
+p test 
+puts "TOO MANY BUCKETS" if test.buckets.length > 16
