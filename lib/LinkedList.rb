@@ -51,65 +51,13 @@ class LinkedList
     crawl("nodes") { |curr| !curr.next.nil?}
   end
 
-  def keys
-    curr, list = head, []
+  def enum
+    curr = head
+    list = []
     while !curr.nil?
-      list.push(curr.key)
+      list << yield([curr.key, curr.value])
       curr = curr.next
     end
     list
   end
-
-#   def prepend(value)
-#     new_node = Node.new(value)
-#     new_node.next = head
-#     @head = new_node
-#   end
-
-
-
-#   def get_head
-#     head
-#   end
-
-#   def get_tail
-#     tail = crawl {|curr| !curr.next.nil?}
-#     tail
-#   end
-
-
-
-#   def pop
-#     #next to last node
-#     at(size - 2).next = nil
-#   end
-
-#   def contains?(value)
-#     curr = crawl do |curr| 
-#       break if curr.nil? 
-#       curr.value != value
-#     end
-#     curr ? true : false
-#   end
-
-
-
-#   # displays value of every node
-#   def to_s
-#     crawl do |curr|
-#       print "( #{curr.value} ) -> "
-#       !curr.next.nil?
-#     end
-#     puts "nil"
-#   end
-
-#   # points prev to new_node, new_node points to index
-#   def insert_at(value, index)
-#     new_node = Node.new(value)
-#     new_node.next = at(index)
-#     at(index-1).next = new_node
-#   end
-
-  # points prev node to node after index
-
 end
